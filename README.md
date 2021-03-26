@@ -12,6 +12,7 @@ Tools for midi generation and playback from within emacs. This project is in bet
 (require 'midio)
 ```
 You can either put this code in your main config file or put it anywhere and execute it (tip: You can execute any expression by placing the cursor to the closing paren and hitting `C-x C-e`)
+
 5. Open `tests/the-lick.el` and execute the expression. Sound will play and a hydra control panel will show up so you can interact with the player.
 
 ## Contributing
