@@ -36,14 +36,14 @@
 (midio-interpret
  (midio-batch
   (list
-   (midio-on 64 110) (midio-sit 0.2) (midio-off 64)
-   (midio-on 66 100) (midio-sit 0.2) (midio-off 66)
-   (midio-on 67  90) (midio-sit 0.2) (midio-off 67)
-   (midio-on 69  90) (midio-sit 0.2) (midio-off 69)
-   (midio-on 66 100) (midio-sit 0.3) (midio-off 66)
+   (midio-on 64  98) (midio-sit 0.2) (midio-off 64)
+   (midio-on 66 105) (midio-sit 0.2) (midio-off 66)
+   (midio-on 67 100) (midio-sit 0.2) (midio-off 67)
+   (midio-on 69  95) (midio-sit 0.2) (midio-off 69)
+   (midio-on 66  95) (midio-sit 0.3) (midio-off 66)
    (midio-sit 0.1)
-   (midio-on 62  90) (midio-sit 0.2) (midio-off 62)
-   (midio-on 64 100) (midio-sit 0.6) (midio-off 64))))
+   (midio-on 62  92) (midio-sit 0.2) (midio-off 62)
+   (midio-on 64  93) (midio-sit 0.6) (midio-off 64))))
 
 (provide 'the-lick)
 ;;; the-lick.el ends here
