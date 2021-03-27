@@ -43,6 +43,14 @@
   (midio-all-notes-off)
   (message "Done."))
 
+(defun midio-hold-step ()
+  "Advance to the next batch."
+  (interactive)
+  (midio-schedule-next-event 0)
+  (let ((next (car midio-upcoming-events)))
+    ; TODO merge off-only events
+    (if next (setf (midio-i-play-and-sit-duration next) 10000))))
+
 (defun midio-hold-release ()
   "Release hold."
   (interactive)
@@ -63,7 +71,7 @@
 _s_: step
 _r_: release
 _k_: kill"
-  ("s" midio-not-implemented)
+  ("s" midio-hold-step)
   ("k" midio-kill :exit t)
   ("r" midio-hold-release :exit t))
 

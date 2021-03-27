@@ -48,11 +48,8 @@
   (while midio-upcoming-events
     (while (and midio-upcoming-events (midio-sit-until-next-event))
       (let ((event (pop midio-upcoming-events)))
-        (cond ((listp event) (midio-play-batch event))
-              ((midio-instruction-sit-p event)
-               (midio-schedule-next-event
-                (midio-instruction-sit-duration event)))
-              (t (error "Unknown event type")))))
+        (midio-play-batch (midio-instruction-play-and-sit-batch event))
+        (midio-schedule-next-event (midio-instruction-play-and-sit-duration event))))
     (let ((events unread-command-events))
       (discard-input)
       (mapc 'midio-hydra-process-event events)))

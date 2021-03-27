@@ -33,29 +33,39 @@
 (require 'cl-lib)
 
 (cl-defstruct
-    (midio-instruction-on
+    (midio-i-on
      (:constructor midio-on
       (pitch &optional (velocity 90))))
   pitch velocity)
 
 (cl-defstruct
-    (midio-instruction-off
+    (midio-i-off
      (:constructor midio-off
       (pitch)))
   pitch)
 
 (cl-defstruct
-    (midio-instruction-sit
+    (midio-i-sit
      (:constructor midio-sit
       (duration)))
   duration)
 
+(cl-defstruct
+    (midio-i-play-and-sit
+     (:constructor midio-play-and-sit
+      (batch duration)))
+  batch duration)
+
 (defun midio-batch (instructions)
   "Group `INSTRUCTIONS' between sits into lists."
   (let (buffer result)
-    (dolist (i instructions (append result (list buffer)))
-      (if (midio-instruction-sit-p i)
-          (progn (setq result (append result (list buffer) (list i)))
+    (dolist (i instructions (append result (list (midio-play-and-sit buffer 0))))
+      (if (midio-i-sit-p i)
+          (progn (setq result
+                       (append result
+                               (list (midio-play-and-sit
+                                buffer
+                                (midio-i-sit-duration i)))))
                  (setq buffer nil))
         (setq buffer (append buffer (list i)))))))
 

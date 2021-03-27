@@ -49,15 +49,15 @@
 
 (defun midio-play-instruction (i)
   "Update internal state and represent `I' as fluidsynth command."
-  (cond ((midio-instruction-on-p i)
-         (setq midio--pressed-keys (cons (midio-instruction-on-pitch i)
+  (cond ((midio-i-on-p i)
+         (setq midio--pressed-keys (cons (midio-i-on-pitch i)
                                          midio--pressed-keys))
          (format "noteon 0 %d %d"
-                 (midio-instruction-on-pitch i)
-                 (midio-instruction-on-velocity i)))
-        ((midio-instruction-off-p i)
+                 (midio-i-on-pitch i)
+                 (midio-i-on-velocity i)))
+        ((midio-i-off-p i)
          (format "noteoff 0 %d"
-                 (midio-instruction-off-pitch i)))))
+                 (midio-i-off-pitch i)))))
 
 (defun midio-play-batch (batch)
   "Play `BATCH' of instructions."
