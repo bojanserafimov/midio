@@ -50,5 +50,14 @@
       (duration)))
   duration)
 
+(defun midio-batch (instructions)
+  "Group consecutive midio-on `INSTRUCTIONS' into lists."
+  (let (buffer result)
+    (dolist (i instructions (append result (list buffer)))
+      (if (midio-instruction-sit-p i)
+          (progn (setq result (append result (list buffer) (list i)))
+                 (setq buffer nil))
+        (setq buffer (append buffer (list i)))))))
+
 (provide 'midio-lang-base)
 ;;; midio-lang-base.el ends here

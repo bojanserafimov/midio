@@ -34,17 +34,16 @@
 (require 'midio-lang-base)
 
 (midio-interpret
- (list
-  (list (midio-on 64 90)) (midio-sit 0.2)
-  (list (midio-off 64) (midio-on 66 85)) (midio-sit 0.2)
-  (list (midio-off 66) (midio-on 67 75)) (midio-sit 0.2)
-  (list (midio-off 67) (midio-on 69 70)) (midio-sit 0.2)
-  (list (midio-off 69) (midio-on 66 80)) (midio-sit 0.36)
-  (list (midio-off 66))                  (midio-sit 0.04)
-  (list (midio-on 62 65))                (midio-sit 0.2)
-  (list (midio-off 62) (midio-on 64 70)) (midio-sit 0.6)
-  (list (midio-off 64))))
-
+ (midio-batch
+  (list
+   (midio-on 64 90) (midio-sit 0.2) (midio-off 64)
+   (midio-on 66 85) (midio-sit 0.2) (midio-off 66)
+   (midio-on 67 75) (midio-sit 0.2) (midio-off 67)
+   (midio-on 69 70) (midio-sit 0.2) (midio-off 69)
+   (midio-on 66 80) (midio-sit 0.36) (midio-off 66)
+   (midio-sit 0.04)
+   (midio-on 62 65) (midio-sit 0.2) (midio-off 62)
+   (midio-on 64 70) (midio-sit 0.6) (midio-off 64))))
 
 (provide 'the-lick)
 ;;; the-lick.el ends here
