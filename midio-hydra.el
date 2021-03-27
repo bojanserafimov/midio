@@ -43,13 +43,25 @@
   (midio-all-notes-off)
   (message "Done."))
 
+(defun midio--off-only-batch-p (batch)
+  "Test whether `BATCH' has only off events."
+  (or (not batch)
+      (and (midio-i-off-p (car batch))
+           (midio--off-only-batch-p (cdr batch)))))
+
 (defun midio-hold-step ()
   "Advance to the next batch."
   (interactive)
   (midio-schedule-next-event 0)
-  (let ((next (car midio-upcoming-events)))
-    ; TODO merge off-only events
-    (if next (setf (midio-i-play-and-sit-duration next) 10000))))
+  (while (and (cadr midio-upcoming-events)
+              (midio--off-only-batch-p (midio-i-play-and-sit-batch (car midio-upcoming-events))))
+    (let ((popped (pop midio-upcoming-events))
+          (first (car midio-upcoming-events)))
+      (setf (midio-i-play-and-sit-batch first)
+            (append (midio-i-play-and-sit-batch popped)
+                    (midio-i-play-and-sit-batch first)))))
+  (let ((first (car midio-upcoming-events)))
+    (if first (setf (midio-i-play-and-sit-duration first) 10000))))
 
 (defun midio-hold-release ()
   "Release hold."
