@@ -4,7 +4,7 @@ Tools for midi generation and playback from within emacs. This project is in bet
 ## Quick start
 
 1. This library runs `fluidsynth` as an emacs subprocess by default so make sure you have `fluidsynth` installed. Run  `fluidsynth -a portaudio` to see if it's working. If you want to configure your `fluidsynth` server differently or run it outside of emacs, there are configuration options for that available.
-2. Get a soundfont file compatible with your fluidsynth install. You will be prompted to choose a soundfont before any sound plays. I recommend the Salamander Grand Piano font by [FreePats](https://freepats.zenvoid.org/Piano/acoustic-grand-piano.html) to start with.
+2. Get a soundfont file compatible with your fluidsynth install. You will be prompted to choose a soundfont before any sound plays. I recommend Alexander Holm's Salamander Grand Piano font available on [FreePats](https://freepats.zenvoid.org/Piano/acoustic-grand-piano.html) to start with.
 3. Download the `midio` source
 4. Add the source to your emacs load path and require the main package. You can either put this code in your main config file or put it anywhere and execute it (tip: You can execute any expression by placing the cursor to the closing paren and hitting `C-x C-e`)
 ``` elisp
