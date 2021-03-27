@@ -51,7 +51,7 @@
   duration)
 
 (defun midio-batch (instructions)
-  "Group consecutive midio-on `INSTRUCTIONS' into lists."
+  "Group `INSTRUCTIONS' between sits into lists."
   (let (buffer result)
     (dolist (i instructions (append result (list buffer)))
       (if (midio-instruction-sit-p i)
