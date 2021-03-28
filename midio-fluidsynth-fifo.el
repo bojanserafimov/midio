@@ -34,7 +34,7 @@
 ;;  The following initialization instructions would work on most systems:
 ;;  $ mkdir -p ~/var/midi/emacs
 ;;  $ mkfifo ~/var/midi/emacs/out.midi
-;;  $ cat > ~var/midi/emacs/out.midi  # Keep the fifo alive and send commands if necessary
+;;  $ cat > ~/var/midi/emacs/out.midi  # Keep the fifo alive and send commands if necessary
 ;;
 ;;  Then in a separate shell:
 ;;  $ fluidsynth -a portaudio ~/path/to/soundfont.sf2 < ~/var/midi/emacs/out.midi
@@ -62,7 +62,11 @@
   (append-object-to-file midio-fluidsynth-fifo-file msg))
 
 (defun midio-fluidsynth-fifo-prepare ()
-  "Do nothing.")
+  "Create the named pipe."
+  (make-directory (file-name-directory midio-fluidsynth-fifo-file))
+  (delete-file midio-fluidsynth-fifo-file)
+  (shell-command "ls")
+  )
 
 (defconst midio-fluidsynth-fifo
   (make-midio-fluidsynth-interface

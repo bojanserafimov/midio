@@ -69,5 +69,16 @@
                  (setq buffer nil))
         (setq buffer (append buffer (list i)))))))
 
+(defun midio-voice (instructions)
+  "Sprinkle some midio-off into `INSTRUCTIONS' to make sure there's one voice."
+  (let (stack active)
+    (dolist (i instructions (reverse (if active (cons (midio-off active) stack) stack)))
+      (when (midio-i-on-p i)
+        (when active (setq stack (cons (midio-off active) stack)))
+        (setq active (midio-i-on-pitch i)))
+      (when (and (midio-i-off-p i) (equal stack (midio-i-off-pitch i)))
+        (setq active nil))
+      (setq stack (cons i stack)))))
+
 (provide 'midio-lang-base)
 ;;; midio-lang-base.el ends here

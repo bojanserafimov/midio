@@ -46,7 +46,6 @@
 (defvar midio--pressed-keys nil
   "Pitches of midi notes currently pressed. May contain duplicates.")
 
-
 (defun midio-play-instruction (i)
   "Update internal state and represent `I' as fluidsynth command."
   (cond ((midio-i-on-p i)
