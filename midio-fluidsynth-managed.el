@@ -53,6 +53,12 @@
           (const :tag "Microsoft WaveOut, alternative to DirectSound" "waveout")
           (const :tag "Simple DirectMedia Layer" "sdl2*")))
 
+(defcustom midio-soundfont-library nil
+  "Starting search directory for `midio-fluidsynth-select-soundfont'."
+  :group 'midio
+  :type '(choice (directory :tag "Custom directory")
+                 (const :tag "Buffer-local default directory" nil)))
+
 (defvar midio-fluidsynth-soundfont nil
   "Soundfont to use with fluidsynth.")
 
@@ -60,7 +66,10 @@
   "Set `midio-fluidsynth-soundfont'."
   (interactive)
   (setq midio-fluidsynth-soundfont
-        (read-file-name "Choose soundfont: ")))
+        (read-file-name
+         "Choose soundfont: "
+         midio-soundfont-library))
+  (midio-fluidsynth-restart))
 
 (defun midio-fluidsynth-get-soundfont ()
   "Return the soundfont to use."
