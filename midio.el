@@ -56,16 +56,5 @@
   (midio-hydra/midio-kill-and-exit)
   nil)
 
-(defun midio--eval (sexp)
-  "Evaluate `SEXP' and interpret the resulting score."
-  (midio-interpret (eval (macroexpand-all sexp) lexical-binding)))
-
-(require 'eros)
-(defun midio-eval-sexp ()
-  "Eval music s-expression at point and show the return value."
-  (interactive)
-  (let ((result (midio--eval (elisp--preceding-sexp))))
-    (eros--eval-overlay result (point))))
-
 (provide 'midio)
 ;;; midio.el ends here
