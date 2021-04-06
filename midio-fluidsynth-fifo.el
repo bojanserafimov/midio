@@ -62,11 +62,7 @@
   (append-object-to-file midio-fluidsynth-fifo-file msg))
 
 (defun midio-fluidsynth-fifo-prepare ()
-  "Create the named pipe."
-  (make-directory (file-name-directory midio-fluidsynth-fifo-file))
-  (delete-file midio-fluidsynth-fifo-file)
-  (shell-command "ls")
-  )
+  "Do nothing.")
 
 (defconst midio-fluidsynth-fifo
   (make-midio-fluidsynth-interface
